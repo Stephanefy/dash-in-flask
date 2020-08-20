@@ -1,12 +1,47 @@
-<div>
-  Test:
-  <a href="{{ url_for('main.index') }}">Home</a>
-  {% if current_user.is_anonymous %}
-  <a href="{{ url_for('main.login') }}">Login</a>
-  {% else %}
-  <a href="{{ url_for('main.logout') }}">Logout</a>
-  {% endif %}
 
-  {% block content %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title>Flask app</title>
+    <link
+    href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+    rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/style.min.css') }}"/>
+    {{ moment.include_jquery() }}
+    {{ moment.include_moment() }}
+  </head>
+  <body>
+    <header class="mb-2">
+      <nav class="nav">
+        <div class="logo-wrapper">
+          <a href="{{ url_for('main.index')}}"><img class="logo" src="{{ url_for('static', filename='img/logo-agensit.png')}}" alt="logo"></a>
+        </div>
+        <div class="nav-items">
+          <a href="{{ url_for('main.index') }}">Accueil</a>
+          {% if current_user.is_anonymous %}
+          <a href="{{ url_for('main.login') }}">Se connecter</a>
+          {% else %}
+          <a href="{{ url_for('main.logout') }}">Se déconnecter</a>
+          <span class="current_user">Bienvenue {{ current_user.username }} !</span>
+          {% endif %}
+        </div>
+      </nav>
+    </header>
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+    <footer class="footer">
+      <div class="footer-legal">
+        <p>&copy; 2020 tous droits réservés, Agensit SAS</p>
+      </div>
+    </footer>
+  </body>
+  {% block javascript %}
+    <script type="text/javascript">
+    
+    </script>
+    <!-- The contents of myscript.js will be loaded inside the script tag -->
   {% endblock %}
-</div>
+</html>

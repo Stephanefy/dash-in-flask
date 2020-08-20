@@ -1,0 +1,100 @@
+ /*login page*/
+ .form-wrapper{
+    height: 615px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .form-input{
+        width: 355px;
+        height: 44px;
+        -webkit-font-smoothing: antialiased;
+        appearance: none;
+        background: transparent;
+        background-color: rgba(0, 0, 0, 0);
+        border: solid 1px #eee;
+        border-radius: 4px;
+        bottom: 0px;
+        box-sizing: border-box;
+        transition: border .3s ease;
+
+        &:focus{
+          border: 1px solid #33b5e5;
+        }
+    }
+}
+
+.card{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color:#fff;
+    width: 20vw;
+    height: 70%;
+    box-shadow: 0px 10px 10px rgba(0,0,0, 0.1);
+
+    h1{
+        text-align: center;
+    }
+}
+
+.card-title{
+  padding: 0 1.5rem;
+}
+.card-text{
+  padding: 2rem;
+  text-align: center;
+  flex: 2 ;
+}
+
+.button{
+    padding: 0.5rem 4rem;
+    background:#284b63;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.card-to-dashapp{
+  width: 500px;
+  height: 800px;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+  background-color:#eee;
+  width: 20vw;
+  margin: 0 2rem;
+  box-shadow: 0px 10px 10px rgba(0,0,0, 0.1);
+}
+
+.button-to-dashapp{
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-left: 5%;
+} 
+
+.button-to-dashapp button{
+  padding: 1rem 4rem;
+  background:#284b63;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin: .5rem .5rem;
+  transition: opacity .5s ease-in-out;
+}
+.button-to-dashapp button:hover,
+.button-to-dashapp button a
+{
+  opacity: 0.8;
+}
+
+.button-to-dashapp button a{
+  color: white;
+  font-size: 1.25rem;
+}
