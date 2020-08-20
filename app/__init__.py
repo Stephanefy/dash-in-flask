@@ -7,7 +7,7 @@ from flask.helpers import get_root_path
 from flask_login import login_required
 from flask_assets import Environment, Bundle
 
-from config import BaseConfig
+from config import Config
 
 
 
@@ -15,7 +15,7 @@ def create_app():
     server = Flask(__name__,instance_relative_config=False)
     assets = Environment(server)
     moment = Moment(server)
-    server.config.from_object(BaseConfig)
+    server.config.from_object(Config)
 
 
     # style_bundle = Bundle(
