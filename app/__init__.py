@@ -18,15 +18,15 @@ def create_app():
     server.config.from_object(BaseConfig)
 
 
-    style_bundle = Bundle(
-    'src/less/*.less',
-    filters='less,cssmin',
-    output='dist/css/style.min.css',
-    extra={'rel': 'stylesheet/css'}
-    )   
+    # style_bundle = Bundle(
+    # 'src/less/*.less',
+    # filters='less,cssmin',
+    # output='dist/css/style.min.css',
+    # extra={'rel': 'stylesheet/css'}
+    # )   
 
-    assets.register('main_styles', style_bundle)  # Register style bundle
-    style_bundle.build()  # Build LESS styles
+    # assets.register('main_styles', style_bundle)  # Register style bundle
+    # style_bundle.build()  # Build LESS styles
 
     from app.dashapp1.layout import layout as layout1
     from app.dashapp1.callbacks import register_callbacks as register_callbacks1
