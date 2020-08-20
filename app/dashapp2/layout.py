@@ -52,10 +52,10 @@ def millify(n):
     return n
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-absolute_path_dirty_data = "https://github.com/Stephanefy/dash-in-flask/tree/master/app/dashapp2/data/all_data.csv"
-absolute_path_clean_data = "https://github.com/Stephanefy/dash-in-flask/tree/master/app/dashapp2/data/clean_data.csv"
-absolute_path_raw_data = "https://github.com/Stephanefy/dash-in-flask/tree/master/app/dashapp2/data/raw_data.csv"
-absolute_path_city_info = "https://github.com/Stephanefy/dash-in-flask/tree/master/app/dashapp2/data/city_info.csv"
+absolute_path_dirty_data = "https://github.com/Stephanefy/dash-in-flask/blob/master/app/dashapp2/data/all_data.csv"
+absolute_path_clean_data = "https://github.com/Stephanefy/dash-in-flask/blob/master/app/dashapp2/data/clean_data.csv"
+absolute_path_raw_data = "https://github.com/Stephanefy/dash-in-flask/blob/master/app/dashapp2/data/raw_data.csv"
+absolute_path_city_info = "https://github.com/Stephanefy/dash-in-flask/blob/master/app/dashapp2/data/city_info.csv"
 
 
 
