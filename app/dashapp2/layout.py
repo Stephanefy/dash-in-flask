@@ -60,9 +60,9 @@ absolute_path_city_info = "https://raw.githubusercontent.com/Stephanefy/dash-in-
 
 
 ## LOAD DATA
-dirty_data = pd.read_csv(absolute_path_dirty_data,sep=",")
-data = pd.read_csv(absolute_path_clean_data,sep=",")
-raw_data = pd.read_csv(absolute_path_raw_data,sep=",")
+dirty_data = pd.read_csv(absolute_path_dirty_data)
+data = pd.read_csv(absolute_path_clean_data)
+raw_data = pd.read_csv(absolute_path_raw_data)
 
 ## 1. ANALYSE DES PRODUITS
 ## -----------------------
@@ -244,7 +244,7 @@ best_city_plot.update_xaxes(fixedrange=True, showgrid=False, linecolor='black', 
 best_city_plot.update_traces(marker_color = blue_info_color)
 
 # PARTIE DETAILÉE
-df = pd.read_csv(absolute_path_city_info,sep=",")
+df = pd.read_csv(absolute_path_city_info)
 
 # SCATTER PLOT : Population en fonction des Ventes
 sales_pop = px.scatter(df, x='pop_2019', y='Sales', text='City' )
