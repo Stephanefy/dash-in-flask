@@ -1,5 +1,6 @@
 import os
-
+import io
+import requests
 import pandas as pd
 import numpy as np
 from dateutil.parser import parse
@@ -22,9 +23,10 @@ margin = dict(l=0, r=0, t=0, b=0)
 
 # basedir = os.path.abspath(os.path.dirname(__file__))
 # aboslute_path = basedir + '/data/df_covid19.csv'
-data_path = '..static/data1/'
+url = 'https://raw.githubusercontent.com/Stephanefy/dash-in-flask/master/app/static/data1/df_covid19.csv'
+s = requests.get(url).content
 # load data
-df = pd.read_csv(data_path + 'df_covid19.csv')
+df = pd.read_csv(io.StringIO(s.decode('utf-8')))
 
 
 
