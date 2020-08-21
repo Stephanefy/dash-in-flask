@@ -1,4 +1,6 @@
 import os
+import io
+import requests
 from itertools import combinations
 from collections import Counter
 
@@ -52,13 +54,26 @@ def millify(n):
     return n
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-data_path = '../static/data2/'
+#fetching data on github repo
+url_all_data = "https://raw.githubusercontent.com/Stephanefy/dash-in-flask/master/app/static/data2/all_data.csv"
+all_data = requests.get(url_all_data).content
+
+url_clean_data = "https://raw.githubusercontent.com/Stephanefy/dash-in-flask/master/app/static/data2/clean_data.csv"
+clean_data = requests.get(url_clean_data).content
+
+url_raw_data = "https://raw.githubusercontent.com/Stephanefy/dash-in-flask/master/app/static/data2/raw_data.csv"
+raw_data = requests.get(url_raw_data).content
+
+url_city_info = "https://raw.githubusercontent.com/Stephanefy/dash-in-flask/master/app/static/data2/city_info.csv"
+city_info = requests.get(url_city_info).content
+
+
 
 
 ## LOAD DATA
-dirty_data = pd.read_csv(data_path + 'all_data.csv')
-data = pd.read_csv(data_path + 'clean_data.csv')
-raw_data = pd.read_csv(data_path + 'raw_data.csv')
+dirty_data = pd.read_csv(io.StringIO(all_data.decode('utf-8')))
+data = pd.read_csv(io.StringIO(clean_data.decode('utf8')))
+raw_data = pd.read_csv(io.StringIO(raw_data.decode('utf8')))
 
 ## 1. ANALYSE DES PRODUITS
 ## -----------------------
@@ -240,7 +255,7 @@ best_city_plot.update_xaxes(fixedrange=True, showgrid=False, linecolor='black', 
 best_city_plot.update_traces(marker_color = blue_info_color)
 
 # PARTIE DETAILÉE
-df = pd.read_csv(data_path + 'city_info.csv')
+df = pd.read_csv(io.StringIO(city_info.decode('utf8')))
 
 # SCATTER PLOT : Population en fonction des Ventes
 sales_pop = px.scatter(df, x='pop_2019', y='Sales', text='City' )
