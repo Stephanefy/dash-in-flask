@@ -52,17 +52,13 @@ def millify(n):
     return n
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-data_path_all = "./data/all_data.csv"
-data_path_clean = "./data/clean_data.csv"
-data_path_raw = "./data/raw_data.csv"
-data_path_city = "./data/city_info.csv"
-
+data_path = './data/'
 
 
 ## LOAD DATA
-dirty_data = pd.read_csv(data_path_all)
-data = pd.read_csv(data_path_clean)
-raw_data = pd.read_csv(data_path_raw)
+dirty_data = pd.read_csv(data_path + 'all_data.csv')
+data = pd.read_csv(data_path + 'clean_data.csv')
+raw_data = pd.read_csv(data_path + 'raw_data.csv')
 
 ## 1. ANALYSE DES PRODUITS
 ## -----------------------
@@ -244,7 +240,7 @@ best_city_plot.update_xaxes(fixedrange=True, showgrid=False, linecolor='black', 
 best_city_plot.update_traces(marker_color = blue_info_color)
 
 # PARTIE DETAILÉE
-df = pd.read_csv(data_path_city)
+df = pd.read_csv(data_path + 'city_info.csv')
 
 # SCATTER PLOT : Population en fonction des Ventes
 sales_pop = px.scatter(df, x='pop_2019', y='Sales', text='City' )

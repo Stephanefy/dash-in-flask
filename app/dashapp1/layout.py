@@ -22,9 +22,9 @@ margin = dict(l=0, r=0, t=0, b=0)
 
 # basedir = os.path.abspath(os.path.dirname(__file__))
 # aboslute_path = basedir + '/data/df_covid19.csv'
-data_path = "./data/df_covid19.csv"
+data_path = './data/'
 # load data
-df = pd.read_csv(data_path)
+df = pd.read_csv(data_path + 'df_covid19.csv')
 
 
 
