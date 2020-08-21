@@ -22,9 +22,9 @@ margin = dict(l=0, r=0, t=0, b=0)
 
 # basedir = os.path.abspath(os.path.dirname(__file__))
 # aboslute_path = basedir + '/data/df_covid19.csv'
-url = "https://raw.githubusercontent.com/Stephanefy/dash-in-flask/master/app/dashapp1/data/df_covid19.csv"
+data_path = "./data/df_covid19.csv"
 # load data
-df = pd.read_csv(url)
+df = pd.read_csv(data_path)
 
 
 

@@ -52,17 +52,17 @@ def millify(n):
     return n
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-absolute_path_dirty_data = "https://raw.githubusercontent.com/Stephanefy/dash-in-flask/master/app/dashapp2/data/all_data.csv"
-absolute_path_clean_data = "https://raw.githubusercontent.com/Stephanefy/dash-in-flask/master/app/dashapp2/data/clean_data.csv"
-absolute_path_raw_data = "https://raw.githubusercontent.com/Stephanefy/dash-in-flask/master/app/dashapp2/data/raw_data.csv"
-absolute_path_city_info = "https://raw.githubusercontent.com/Stephanefy/dash-in-flask/master/app/dashapp2/data/city_info.csv"
+data_path_all = "./data/all_data.csv"
+data_path_clean = "./data/clean_data.csv"
+data_path_raw = "./data/raw_data.csv"
+data_path_city = "./data/city_info.csv"
 
 
 
 ## LOAD DATA
-dirty_data = pd.read_csv(absolute_path_dirty_data)
-data = pd.read_csv(absolute_path_clean_data)
-raw_data = pd.read_csv(absolute_path_raw_data)
+dirty_data = pd.read_csv(data_path_all)
+data = pd.read_csv(data_path_clean)
+raw_data = pd.read_csv(data_path_raw)
 
 ## 1. ANALYSE DES PRODUITS
 ## -----------------------
@@ -244,7 +244,7 @@ best_city_plot.update_xaxes(fixedrange=True, showgrid=False, linecolor='black', 
 best_city_plot.update_traces(marker_color = blue_info_color)
 
 # PARTIE DETAILÉE
-df = pd.read_csv(absolute_path_city_info)
+df = pd.read_csv(data_path_city)
 
 # SCATTER PLOT : Population en fonction des Ventes
 sales_pop = px.scatter(df, x='pop_2019', y='Sales', text='City' )
