@@ -23,6 +23,8 @@ margin = dict(l=0, r=0, t=0, b=0)
 
 url = 'https://raw.githubusercontent.com/Stephanefy/dash-in-flask/master/app/static/data1/df_covid19.csv'
 s = requests.get(url).content
+
+
 # load data
 df = pd.read_csv(io.StringIO(s.decode('utf-8')))
 
