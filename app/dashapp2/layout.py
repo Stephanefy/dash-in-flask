@@ -52,7 +52,7 @@ def millify(n):
     return n
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-data_path = './data/'
+data_path = '../static/data2/'
 
 
 ## LOAD DATA
