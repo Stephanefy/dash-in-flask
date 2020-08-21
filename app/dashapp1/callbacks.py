@@ -13,7 +13,11 @@ pio.templates.default = "plotly_white"
 config_dash = {'displayModeBar': False, 'showAxisDragHandles':False, 'responsive':True } #responsive=True
 margin = dict(l=0, r=0, t=0, b=0)
 
-df = pd.read_csv(r'C:\Users\Dante\OneDrive\Bureau\projet-agensit-portail-analyse-master\app\dashapp1\data\df_covid19.csv')
+
+url = 'https://raw.githubusercontent.com/Stephanefy/dash-in-flask/master/app/static/data1/df_covid19.csv'
+s = requests.get(url).content
+# load data
+df = pd.read_csv(io.StringIO(s.decode('utf-8')))
 
 df['marker_Confirmed'] = df['Confirmed'].map(lambda x: x ** 0.4)
 df['marker_Death'] = df['Death'].map(lambda x: x ** 0.4)
