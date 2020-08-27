@@ -64,7 +64,7 @@ def register_dashapp(app, title, base_pathname, layout, register_callbacks_fun):
                            assets_folder=get_root_path(__name__) + f'/{base_pathname}/assets/',
                            meta_tags=[meta_viewport],
                            external_stylesheets=external_stylesheets,
-                           update_title= 'chargement...')
+                           )
     # Push an application context so we can use Flask's 'current_app'
     with app.app_context():
         my_dashapp.index_string ='''
