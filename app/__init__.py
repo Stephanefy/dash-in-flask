@@ -18,15 +18,23 @@ def create_app():
     server.config.from_object(Config)
 
 
-    # style_bundle = Bundle(
-    # 'src/less/*.less',
-    # filters='less,cssmin',
-    # output='dist/css/style.min.css',
-    # extra={'rel': 'stylesheet/css'}
-    # )   
+    style_bundle = Bundle(
+    'src/less/*.less',
+    filters='less,cssmin',
+    output='dist/css/style.min.css',
+    extra={'rel': 'stylesheet/css'}
+    )
 
-    # assets.register('main_styles', style_bundle)  # Register style bundle
-    # style_bundle.build()  # Build LESS styles
+    js_bundle = Bundle(
+    'src/js/main.js',
+    filters='jsmin',
+    output='dist/js/main.min.js'
+)   
+
+    assets.register('main_styles', style_bundle)  # Register style bundle
+    assets.register('main_js', js_bundle) # Register JS bundle
+    style_bundle.build()  # Build LESS styles
+    js_bundle.build() #build js
 
     from app.dashapp1.layout import layout as layout1
     from app.dashapp1.callbacks import register_callbacks as register_callbacks1
@@ -46,15 +54,47 @@ def create_app():
 def register_dashapp(app, title, base_pathname, layout, register_callbacks_fun):
     # Meta tags for viewport responsiveness
     meta_viewport = {"name": "viewport", "content": "width=device-width, initial-scale=1, shrink-to-fit=no"}
-    external_stylesheets=[dbc.themes.BOOTSTRAP,"/static/css/dashboard/main.css" ]
+    external_stylesheets=[dbc.themes.BOOTSTRAP,"/static/css/dashboard/main.css","/static/css/dashboard/header.css"]
+
+
+
     my_dashapp = dash.Dash(__name__,
                            server=app,
                            url_base_pathname=f'/{base_pathname}/',
                            assets_folder=get_root_path(__name__) + f'/{base_pathname}/assets/',
                            meta_tags=[meta_viewport],
-                           external_stylesheets=external_stylesheets)
+                           external_stylesheets=external_stylesheets,
+                           update_title= "chargement...")
     # Push an application context so we can use Flask's 'current_app'
     with app.app_context():
+        my_dashapp.index_string ='''
+        <!DOCTYPE html>
+        <html>
+            <head>
+                {%metas%}
+                <title>{%title%}</title>
+                {%favicon%}
+                {%css%}
+            </head>
+            <body>
+                <header class="template-header">
+                    <nav class="nav">
+                        <div class="logo-wrapper">
+                        <a href="/"><img class="logo" src="/static/img/logo-agensit.png" alt="logo"></a>
+                        </div>
+                        <div class="nav-items">
+                        <a href="/" class="link">Retourner à l'accueil</a>
+                    </nav>
+                </header>
+                {%app_entry%}
+                <footer>
+                    {%config%}
+                    {%scripts%}
+                    {%renderer%}
+                </footer>
+            </body>
+        </html>
+        '''
         my_dashapp.title = title
         my_dashapp.layout = layout
         register_callbacks_fun(my_dashapp)

@@ -18,15 +18,27 @@
         <div class="logo-wrapper">
           <a href="{{ url_for('main.index')}}"><img class="logo" src="{{ url_for('static', filename='img/logo-agensit.png')}}" alt="logo"></a>
         </div>
-        <div class="nav-items">
+        <div class="nav-items hidden xl:block">
           <a href="{{ url_for('main.index') }}">Accueil</a>
           {% if current_user.is_anonymous %}
           <a href="{{ url_for('main.login') }}">Se connecter</a>
           {% else %}
           <a href="{{ url_for('main.logout') }}">Se déconnecter</a>
-          <span class="current_user">Bienvenue {{ current_user.username }} !</span>
           {% endif %}
         </div>
+        <a class="hamburger block xl:hidden" id="hamburger-5">
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </a>
+        <ul class="menu md:hidden">
+          <a href="{{ url_for('main.index') }}"><li>Accueil</li></a>
+          {% if current_user.is_anonymous %}
+          <a href="{{ url_for('main.login') }}"><li>Se connecter</li></a>
+          {% else %}
+          <a href="{{ url_for('main.logout') }}"><li>Se déconnecter</li></a>
+          {% endif %}
+        </ul>
       </nav>
     </header>
     <section class="main">
@@ -36,7 +48,7 @@
 
   </body>
   {% block javascript %}
-    <script type="text/javascript">
+    <script type="text/javascript" src="{{ url_for('static', filename='dist/js/main.min.js')}}">
     </script>
     <!-- The contents of myscript.js will be loaded inside the script tag -->
   {% endblock %}
