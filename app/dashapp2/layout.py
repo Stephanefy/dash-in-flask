@@ -75,6 +75,7 @@ dirty_data = pd.read_csv(io.StringIO(all_data.decode('utf-8')))
 data = pd.read_csv(io.StringIO(clean_data.decode('utf8')))
 raw_data = pd.read_csv(io.StringIO(raw_data.decode('utf8')))
 
+
 ## 1. ANALYSE DES PRODUITS
 ## -----------------------
 product_report = data.groupby(['Cat', 'Product','Price Each']).sum()
@@ -118,7 +119,7 @@ for product in product_rank.index:
 product_bar.update_layout(
 	margin=no_margin,
 	title_font_size=20,
-	hovermode = 'y',
+	hovermode = 'y unified',
 	hoverlabel=dict(bgcolor="white",font_size=12),
 	legend=dict(
 		orientation="v",
@@ -144,19 +145,9 @@ scatter_plot_product = go.Figure(go.Scatter(x=df["Price Each"],
 ))
 scatter_plot_product.update_xaxes(title='<b>Prix des produits</b>, en $', nticks=5, zerolinewidth=1, zerolinecolor='black')
 scatter_plot_product.update_yaxes(title='<b>Volume de ventes</b>, en $', zerolinewidth=1, zerolinecolor='black')
-scatter_plot_product.update_layout(
-	margin = no_margin,
-	annotations = [
-		dict(
-			x=1700, y=8e6, text='Macbook Pro', font_color='#264653', arrowcolor='#264653'
-		),
-		dict(
-			x=600, y=4e5, text='Machine à laver', font_color='#e76f51', arrowcolor='#e76f51'
-		)
-	]
-)
-# scatter_plot_product.add_annotation(x=1700, y=8e6, text='Macbook Pro', font_color='#264653', arrowcolor='#264653')
-# scatter_plot_product.add_annotation(x=600, y=4e5, text='Machine à laver', font_color='#e76f51', arrowcolor='#e76f51')
+scatter_plot_product.update_layout(margin = no_margin)
+scatter_plot_product.add_annotation(x=1700, y=8e6, text='Macbook Pro', font_color='#264653', arrowcolor='#264653')
+scatter_plot_product.add_annotation(x=600, y=4e5, text='Machine à laver', font_color='#e76f51', arrowcolor='#e76f51')
 
 # DONUT: Analyse du volume de ventes
 labels = categories_list
@@ -203,7 +194,7 @@ map_plot = go.Figure(go.Scattermapbox(
   marker = dict(
     size=city_sales['Sales']/350000, 
     opacity=0.5,
-    # allowoverlap=True,
+    allowoverlap=True,
     color='#094D92'),
   hoverinfo='none'
 ))
@@ -215,7 +206,7 @@ map_plot.add_trace(go.Scattermapbox(
   marker = dict(
     size=city_sales['Sales']/200000, 
     opacity=0.3,
-    # allowoverlap=True,
+    allowoverlap=True,
     color='#094D92'),
   mode="markers+text",
   textposition="top center",
@@ -246,7 +237,7 @@ best_city_plot= go.Figure(go.Bar(
     hovertemplate ='%{y:.3s} $<br>'+'soit %{customdata:%} du CA<br><extra></extra>'))
 best_city_plot.update_layout(
 	margin = no_margin,
-	hovermode = 'x', 
+	hovermode = 'x unified', 
 	hoverlabel=dict(
 		bgcolor="white",
 		font_size=12))
@@ -300,30 +291,16 @@ sales_ads.update_traces(
     line=dict(width=0.5, color='black')))
 sales_ads.update_xaxes(title="<b>Budget publicitaire</b>, par ville", nticks=5)
 sales_ads.update_yaxes(title="<b>Volume de ventes</b>, en $", nticks=5)
-sales_ads.update_layout(
-	hoverlabel=dict(bgcolor="white", font_size=14), 
-	margin = no_margin,
-	annotations = [
-		dict(x=27.3e3,y=8.5e6,text='San Francisco', showarrow=False),
-		dict(x=11.8e3,y=5.7e6,text='Los Angeles', showarrow=False),
-		dict(x=8.2e3,y=4.9e6,text='New York', showarrow=False),
-		dict(x=5.6e3,y=3.9e6,text='Boston', showarrow=False),
-		dict(x=3.625e3,y=2.79e6,text='Atlanta', ax=30, ay=-20),
-		dict(x=3.064e3,y=2.76e6,text='Dallas', ax=0, ay=-40),
-		dict(x=2.77e3,y=2.74e6,text='Seattle', ax=-30, ay=-20),
-		dict(x=2.15e3,y=2.53e6,text='Portland', showarrow=False),
-		dict(x=1.32e3,y=2.05e6,text='Austin', showarrow=False)	
-		]
-	)
-# sales_ads.add_annotation(x=27.3e3,y=8.5e6,text='San Francisco', showarrow=False)
-# sales_ads.add_annotation(x=11.8e3,y=5.7e6,text='Los Angeles', showarrow=False)
-# sales_ads.add_annotation(x=8.2e3,y=4.9e6,text='New York', showarrow=False)
-# sales_ads.add_annotation(x=5.6e3,y=3.9e6,text='Boston', showarrow=False)
-# sales_ads.add_annotation(x=3.625e3,y=2.79e6,text='Atlanta', ax=30, ay=-20)
-# sales_ads.add_annotation(x=3.064e3,y=2.76e6,text='Dallas', ax=0, ay=-40)
-# sales_ads.add_annotation(x=2.77e3,y=2.74e6,text='Seattle', ax=-30, ay=-20)
-# sales_ads.add_annotation(x=2.15e3,y=2.53e6,text='Portland', showarrow=False)
-# sales_ads.add_annotation(x=1.32e3,y=2.05e6,text='Austin', showarrow=False)
+sales_ads.update_layout(hoverlabel=dict(bgcolor="white", font_size=14), margin=no_margin)
+sales_ads.add_annotation(x=27.3e3,y=8.5e6,text='San Francisco', showarrow=False)
+sales_ads.add_annotation(x=11.8e3,y=5.7e6,text='Los Angeles', showarrow=False)
+sales_ads.add_annotation(x=8.2e3,y=4.9e6,text='New York', showarrow=False)
+sales_ads.add_annotation(x=5.6e3,y=3.9e6,text='Boston', showarrow=False)
+sales_ads.add_annotation(x=3.625e3,y=2.79e6,text='Atlanta', ax=30, ay=-20)
+sales_ads.add_annotation(x=3.064e3,y=2.76e6,text='Dallas', ax=0, ay=-40)
+sales_ads.add_annotation(x=2.77e3,y=2.74e6,text='Seattle', ax=-30, ay=-20)
+sales_ads.add_annotation(x=2.15e3,y=2.53e6,text='Portland', showarrow=False)
+sales_ads.add_annotation(x=1.32e3,y=2.05e6,text='Austin', showarrow=False)
 
 ## 3. ANALYSE TEMPORELLE
 ## -----------------------
@@ -342,10 +319,10 @@ ca_per_month = go.Figure(go.Scatter(
 ))
 ca_per_month.update_yaxes(fixedrange=True, title="<b>Chiffre d'affaires mensuelle</b>, en $", nticks=5)
 ca_per_month.update_xaxes(fixedrange=True)
-ca_per_month.update_layout(hoverlabel=dict(bgcolor="white",font_size=14), hovermode='x', margin=no_margin)
+ca_per_month.update_layout(hoverlabel=dict(bgcolor="white",font_size=14), hovermode='x unified', margin=no_margin)
 ca_per_month.update_layout(
   hoverlabel=dict(bgcolor="white",font_size=14), 
-  hovermode='x',
+  hovermode='x unified',
   shapes=[
     dict(
         type="rect",
@@ -365,33 +342,11 @@ ca_per_month.update_layout(
         layer="below",
         line_width=0,
     )
-  ],
-  annotations=[
-	  dict(
-		  x=6.5, 
-		  y=3.5e6, 
-		  text='<b>Vacances Scolaires</b><br> Période creuse', 
-		  font=dict(size=14), 
-		  showarrow=False
-	  ),
-      dict(
-		x=1, 
-		y=3.5e6, 
-		text='<b>Après Fêtes</b><br> Période creuse', 
-		font=dict(size=14), 
-		showarrow=False
-	  ),
-	  dict(
-		x=11, 
-		y=4.6e6, 
-		font=dict(size=14), 
-		text="Fêtes"
-	  )
   ]
 )
-# ca_per_month.add_annotation(x=6.5, y=3.5e6, text='<b>Vacances Scolaires</b><br> Période creuse', font=dict(size=14), showarrow=False)
-# ca_per_month.add_annotation(x=1, y=3.5e6, text='<b>Après Fêtes</b><br> Période creuse', font=dict(size=14), showarrow=False)
-# ca_per_month.add_annotation(x=11, y=4.6e6, font=dict(size=14), text="Fêtes")
+ca_per_month.add_annotation(x=6.5, y=3.5e6, text='<b>Vacances Scolaires</b><br> Période creuse', showarrow=False)
+ca_per_month.add_annotation(x=1, y=3.5e6, text='<b>Après Fêtes</b><br> Période creuse', showarrow=False)
+ca_per_month.add_annotation(x=11, y=4.6e6, font=dict(size=14), text="Fêtes")
 
 # PARTIE DETAILÉE
 buying_hours = data.groupby('Hour').sum()['Quantity Ordered']
@@ -431,34 +386,12 @@ sales_per_hour.update_layout(
     opacity=0.2,
     layer="below",
     line_width=0,
-  ),
- ],
- annotations=[
-	  dict(
-		x=3, 
-		y=7.5e3, 
-		text='<b>Nuit,</b><br> période creuse', 
-		font=dict(size=14), 
-		showarrow=False
-	  ),
-      dict(
-		x=12, 
-		y=14202, 
-		text='<b>12h,</b> pause déjeuner ', 
-		font=dict(size=14)
-	  ),
-	  dict(
-		x=19, 
-		y=14470, 
-		text='<b>19h</b>, temps libre', 
-		font=dict(size=14)
-	  )
-  ])
-# sales_per_hour.add_annotation(x=3, y=7.5e3, text='<b>Nuit,</b><br> période creuse', font=dict(size=14), showarrow=False)
-# sales_per_hour.add_annotation(x=12, y=14202, text='<b>12h,</b> pause déjeuner ', font=dict(size=14))
-# sales_per_hour.add_annotation(x=19, y=14470, text='<b>19h</b>, temps libre', font=dict(size=14))
+  )
+])
+sales_per_hour.add_annotation(x=3, y=7.5e3, text='<b>Nuit,</b><br> période creuse', font=dict(size=14), showarrow=False)
+sales_per_hour.add_annotation(x=12, y=14202, text='<b>12h,</b> pause déjeuner ', font=dict(size=14))
+sales_per_hour.add_annotation(x=19, y=14470, text='<b>19h</b>, temps libre', font=dict(size=14))
 
-#
 '''------------------------------------------------------------------------------------------- 
                                             DASH LAYOUT
    ------------------------------------------------------------------------------------------- 
@@ -466,7 +399,7 @@ sales_per_hour.update_layout(
 layout = dbc.Container([
 	html.Div(children=[
 		dcc.Markdown('''
-			# Analyse des ventes d'une entreprise en ligne d'électronique 
+			# Analyse des ventes d'une entreprise en ligne d'électronique
 			---
 		'''),
 		dbc.Alert([

@@ -80,14 +80,21 @@ def register_dashapp(app, title, base_pathname, layout, register_callbacks_fun):
                 <header class="template-header">
                     <nav class="nav">
                         <div class="logo-wrapper">
-                        <a href="/"><img class="logo" src="/static/img/logo-agensit.png" alt="logo"></a>
+                        <a href="/"><img class="logo" src="/static/img/logo-brain.svg" alt="logo"></a>
                         </div>
                         <div class="nav-items">
-                        <a href="/" class="link">Retourner à l'accueil</a>
+                        <a href="/" class="link">Accueil</a>
                     </nav>
                 </header>
                 {%app_entry%}
-                <footer>
+                <footer class="template-header">
+                 <nav class="nav nav-footer">
+                        <div class="logo-wrapper">
+                        <a href="/"><img class="logo" src="/static/img/logo-brain.svg" alt="logo"></a>
+                        </div>
+                        <div class="nav-items">
+                        <a href="/" class="link">Accueil</a>
+                </nav>
                     {%config%}
                     {%scripts%}
                     {%renderer%}
