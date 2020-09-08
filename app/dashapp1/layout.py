@@ -37,7 +37,6 @@ server = app.server
 
 ## USE THE FRENCH DATE - not working with heroku
 import locale
-
 locale.setlocale(locale.LC_TIME, "fr_FR")
 
 ## COLOR & OPACITY
