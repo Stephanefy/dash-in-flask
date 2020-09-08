@@ -2,7 +2,7 @@
 
 {% block content %}
 {% if current_user.is_anonymous %}
-<div class="anonymous-message">
+<div class="anonymous-message flex items-center h-full mt-12">
   <h1 class="welcome-message text-2xl font-semibold">Bonjour, pour accéder aux analyses<br/>
     Veuillez vous connecter</h1>
   <div class="img-wrapper my-8">
@@ -10,7 +10,7 @@
   </div>
    <button class="button index-login"><a href="{{ url_for('main.login') }}">Se connecter</a></button>
 </div>
-<footer class="footer hidden md:block">
+<footer class="footer md:block">
   <div class="footer-legal">
     <p>&copy; 2020 tous droits réservés, Agensit SAS</p>
   </div>
@@ -122,15 +122,15 @@
                     <td>{{ moment().format('MMMM Do YYYY') }}</td>
                     <td>{{ moment().format('MMMM Do YYYY') }}</td>
                     <td>{{ moment().format('MMMM Do YYYY') }}</td>
-
                 </tr>
             </tbody>
         </table>
 
-        <p><a href="#">voir plus</a></p>
+        <p class="mx-auto"><a href="#">voir plus</a></p>
 
     </div>
   </div>
+</div>
 </div>
 {% endif %}
 {% endblock %}

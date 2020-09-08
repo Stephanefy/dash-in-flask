@@ -3,7 +3,7 @@
 {% block content %}
 <div class="form-wrapper">
   <div class="card">
-    <h1 class="text-2xl font-semibold">Connexion à votre compte</h1>
+    <h1 class="text-2xl font-semibold pt-8">Connexion à votre compte</h1>
     <form action="" method="post" novalidate>
       {{ form.hidden_tag() }}
       <p class="mt-12">
@@ -20,7 +20,7 @@
       <p class="error"><strong>Error:</strong> {{ error }}
         {% endif %}
     </form>
-    <p> Nouvel utilisateur <a href="{{ url_for('main.register') }}">Cliquez pour vous enregistrer</a></p>
+    <p class="p-8"> Nouvel utilisateur <a href="{{ url_for('main.register') }}">Cliquez pour vous enregistrer</a></p>
   </div>
  
 </div>
