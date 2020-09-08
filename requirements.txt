@@ -6,7 +6,6 @@ Click==7.0
 dash==1.14.0
 appdirs==1.4.4
 astroid==2.2.5
-attrs==19.3.0
 autopep8==1.4.4
 backcall==0.1.0
 beautifulsoup4==4.8.2
