@@ -8,7 +8,7 @@
   <div class="img-wrapper my-8">
     <img src="{{ url_for('static', filename='img/analysis.svg')}}" alt="image-analyse" width="600"/>
   </div>
-   <button class="button index-login"><a href="{{ url_for('main.login') }}">Se connecter</a></button>
+   <button class="bg-blue-500 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 hover:border-t-2 border-blue-600 hover:border-blue-500 rounded"><a href="{{ url_for('main.login') }}">Se connecter</a></button>
 </div>
 <footer class="footer md:block">
   <div class="footer-legal">
@@ -16,7 +16,9 @@
   </div>
 </footer>
 {% else  %}
-<div class="flex flex-col md:flex-row">
+<!-- sidebar -->
+
+<div class="h-screen flex flex-col md:flex-row">
   <div class="sidebar h-24 fixed bottom-0 md:relative md:h-auto lg:h-auto z-10 w-full md:w-2/12">
       <ul class="list-reset flex flex-row md:flex-col py-0 md:py-3 px-1 md:px-2 text-center md:text-left mt-8 md:mt-16">
           <li class="mr-3 mb-2 flex-1">
@@ -26,12 +28,7 @@
           </li>
           <li class="mr-3 mb-2 flex-1">
               <a href="/analyse" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-purple-500">
-                  <i class="fa fa-envelope pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-lg md:text-base hover:text-white  text-gray-600 md:text-gray-400 block md:inline-block">Analyse de données</span>
-              </a>
-          </li>
-          <li class="mr-3 mb-2 flex-1">
-              <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-blue-600 hover:border-purple-500">
-                  <i class="fas fa-chart-area pr-0 md:pr-3 text-blue-600"></i><span class="pb-1 md:pb-0 text-lg hover:text-white md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Rapport stratégique</span>
+                  <i class="fa fa-envelope pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-lg md:text-base hover:text-white  text-gray-600 md:text-gray-400 block md:inline-block">Rapport stratégique</span>
               </a>
           </li>
       </ul>
@@ -42,6 +39,7 @@
   <h1 class="welcome-message text-2xl font-semibold"> Bienvenue, {{ current_user.username }}!<br/> Vous pouvez accéder sur cette page à nos différentes analyses</h1>
 </div>
 
+<!-- access to dash app cards -->
 <div class="w-full xl:w-4/12 p-3">
   <!--Graph Card-->
   <div class="bg-white border-transparent rounded-lg shadow-lg">
@@ -62,7 +60,7 @@
   <!--Graph Card-->
   <div class="bg-white border-transparent rounded-lg shadow-lg">
       <div class="bg-gray-400 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2">
-          <h5 class="font-bold uppercase text-gray-600">Analyse des ventes</h5>
+          <h5 class="font-bold uppercase text-gray-600">Rapport stratégique</h5>
       </div>
       <div class="mt-2 w-full flex justify-center">
         <img src="{{ url_for('static', filename='img/data_analyzing_.svg')}}" alt="image-data-analyzing" width="275"/>
@@ -74,33 +72,16 @@
   </div>
   <!--/Graph Card-->
 </div>
-<div class="w-full xl:w-4/12 p-3">
-  <!--Graph Card-->
-  <div class="bg-white border-transparent rounded-lg shadow-lg">
-      <div class="bg-gray-400 uppercase text-gray-800 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2">
-          <h5 class="font-bold uppercase text-gray-600">Rapport stratégique</h5>
-      </div>
-      <div class="mt-2 w-full flex justify-center">
-        <img src="{{ url_for('static', filename='img/report_analysis_.svg')}}" alt="image-data-rapport" width="260"/>
-      </div>
-      <div class="p-5 text-center">
-        <p class="card-text">Consultez le rapport stratégique basé sur l'étude de vos données et préparé par nos analystes</p>
-        <button class="bg-blue-500 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 hover:border-t-2 border-blue-600 hover:border-blue-500 rounded"><a href="/stratégie"> Accéder au rapport</a></button>
-      </div>
-  </div>
-  <!--/Graph Card-->
-</div>
-<div class="w-full xl:w-12/12 p-3">
+<div class="w-full xl:w-6/12 p-3">
   <div class="bg-white border-transparent rounded-lg shadow-lg w-full h-auto md:w-12/12 mx-auto">
     <div class="bg-gray-400 border-b-2 border-gray-500 rounded-tl-lg rounded-tr-lg p-2">
         <h5 class="font-bold uppercase text-gray-600">Archive</h5>
     </div>
     <div class="p-2">
-        <table class="w-full p-5 text-gray-700 text-base">
+        <table class="w-8/12 p-5 text-gray-700 text-base mx-auto">
             <thead>
                 <tr>
                     <th class="text-center text-blue-900">Dashboard dynamique</th>
-                    <th class="text-center text-blue-900">Analyse des données</th>
                     <th class="text-center text-blue-900">Rapport stratégique</th>
                 </tr>
             </thead>
@@ -109,24 +90,16 @@
                 <tr>
                     <td>{{ moment().format('MMMM Do YYYY') }}</td>
                     <td>{{ moment().format('MMMM Do YYYY') }}</td>
-                    <td>{{ moment().format('MMMM Do YYYY') }}</td>
                   
                 </tr>
                 <tr>
-                    <td>{{ moment().format('MMMM Do YYYY') }}</td>
-                    <td>{{ moment().format('MMMM Do YYYY') }}</td>
-                    <td>{{ moment().format('MMMM Do YYYY') }}</td>
-                 
-                </tr>
-                <tr>
-                    <td>{{ moment().format('MMMM Do YYYY') }}</td>
                     <td>{{ moment().format('MMMM Do YYYY') }}</td>
                     <td>{{ moment().format('MMMM Do YYYY') }}</td>
                 </tr>
             </tbody>
         </table>
 
-        <p class="mx-auto"><a href="#">voir plus</a></p>
+        <p><a href="#">voir plus</a></p>
 
     </div>
   </div>
