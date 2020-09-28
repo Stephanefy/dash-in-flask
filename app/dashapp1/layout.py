@@ -130,8 +130,8 @@ header = dbc.Card([
 # 2. Colonne de Gauche
 # --------------------------------------------------------
 
-progress_bar = dcc.Graph(id='progress_pie', className="progress_pie", config=config_dash, style={'height':'100%'})
-summary = dcc.Graph(id='card_sum', className="card_sum" ,config=config_dash, style={'height':'100%'})
+progress_bar = dcc.Graph(id='progress_pie', className="progress_pie", config=config_dash, style={'height':'100%','width':'100%'})
+summary = dcc.Graph(id='card_sum', className="card_sum" ,config=config_dash, style={'height':'100%','width':'100%'})
 monthly_sales = dcc.Graph(id='monthly_sales', config=config_dash, style={'width':'100%','height':'45vh'}, className="border")
 
 left_block = dbc.Col(
@@ -139,7 +139,7 @@ left_block = dbc.Col(
             children=[
             dbc.Row(
             children = [
-                dbc.Col(progress_bar, className="border progress_bar mr-3 mt-3 ", style={"background-color": "white"},sm=12,md=6), 
+                dbc.Col(progress_bar, className="border progress_bar mr-3 mt-3 ", style={"background-color": "white"},xs=12,md=6), 
                 dbc.Col(summary, className="border summary mt-3", style={"background-color": "white"}),
                 
             ],className="left-block--indicators"),
@@ -149,7 +149,6 @@ left_block = dbc.Col(
     xs=12,
     className="mr-3 mb-3",
     )
-
 #  3. Colonne de droite
 # --------------------------------------------------------
 city_sales = dcc.Graph(

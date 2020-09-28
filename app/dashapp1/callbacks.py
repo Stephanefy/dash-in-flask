@@ -100,7 +100,7 @@ def register_callbacks(dashapp):
                 dict(
                     x=0.5,
                     y=0.40,
-                    text="Objectif pour Mars",
+                    text=f'Objectif pour {calendar.month_name[month]}',
                     showarrow=False,
                     font=dict(
                         color="#000000",
